@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-option go_package = "github.com/hhk7734/proto/gen/go/loliot/event/long_running_task";
-
-message StatusV1 {
-    string id = 1;
-    int32 total = 2;
-    int32 processed = 3;
-}

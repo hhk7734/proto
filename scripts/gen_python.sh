@@ -15,7 +15,7 @@ realpath2() (
 
 BASEDIR=$(dirname $(realpath2 "$0"))
 
-fd '.*_pb2\.pyi?$' $BASEDIR/../gen/python/loliot -x rm {}
+fd '.*_pb2\.pyi?$' $BASEDIR/../gen/python/lproto -x rm {}
 
 fd '.*\.proto$' $BASEDIR/.. -x protoc \
     --proto_path=$BASEDIR/.. \

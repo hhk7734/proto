@@ -15,7 +15,7 @@ realpath2() (
 
 BASEDIR=$(dirname $(realpath2 "$0"))
 
-rm -rf $BASEDIR/../gen/go/loliot
+rm -rf $BASEDIR/../gen/go/lproto
 
 fd '.*\.proto$' $BASEDIR/.. -x protoc \
     --proto_path=$BASEDIR/.. \

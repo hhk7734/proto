@@ -1,5 +1,5 @@
 [project]
-name = "loliot"
+name = "lproto"
 description = ""
 authors = [{ name = "Hyeonki Hong", email = "hhk7734@gmail.com" }]
 requires-python = ">=3.8,<4.0"
@@ -20,7 +20,7 @@ zip-safe = false
 "*" = ["py.typed", "*.pyi"]
 
 [tool.setuptools.packages.find]
-include = ["loliot", "loliot.*"]
+include = ["lproto", "lproto.*"]
 
 [build-system]
 requires = ["setuptools", "setuptools_scm"]

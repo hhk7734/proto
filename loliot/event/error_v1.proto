@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-option go_package = "github.com/hhk7734/proto/gen/go/loliot/event";
-
-message ErrorV1 {
-    int32 code = 1;
-    string message = 2;
-}

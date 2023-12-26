@@ -15,20 +15,16 @@ realpath2() (
 
 BASEDIR=$(dirname $(realpath2 "$0"))
 
-rm -rf $BASEDIR/../gen/typescript/{tmp,loliot,google,dist}
-mkdir -p $BASEDIR/../gen/typescript/tmp
+rm -rf $BASEDIR/../gen/typescript/{src,dist}
+mkdir -p $BASEDIR/../gen/typescript/src
 
 fd '.*\.proto$' $BASEDIR/.. -x protoc \
     --plugin="$BASEDIR/../gen/typescript/node_modules/.bin/protoc-gen-ts_proto" \
     --proto_path=$BASEDIR/.. \
-    --ts_proto_out=$BASEDIR/../gen/typescript/tmp \
+    --ts_proto_out=$BASEDIR/../gen/typescript/src \
     --ts_proto_opt=esModuleInterop=true \
     {}
 
-pushd $BASEDIR/../gen/typescript
-npm run build
-popd
-
-mv $BASEDIR/../gen/typescript/dist/* $BASEDIR/../gen/typescript
-
-rm -rf $BASEDIR/../gen/typescript/{tmp,dist}
+# pushd $BASEDIR/../gen/typescript
+# npm run build
+# popd
