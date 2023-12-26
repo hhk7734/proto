@@ -1,0 +1,15 @@
+{
+	"dependencies": {
+		"protobufjs": "^7.2.5"
+	},
+	"devDependencies": {
+		"google-protobuf": "^3.21.2",
+		"ts-proto": "^1.165.2",
+		"tsc": "^2.0.4",
+		"typescript": "^5.3.3"
+	},
+	"name": "loliot",
+	"scripts": {
+		"build": "tsc --build"
+	}
+}
