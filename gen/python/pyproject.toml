@@ -1,0 +1,27 @@
+[project]
+name = "loliot"
+description = ""
+authors = [{ name = "Hyeonki Hong", email = "hhk7734@gmail.com" }]
+requires-python = ">=3.8,<4.0"
+
+dynamic = ["version"]
+
+dependencies = ["protobuf"]
+
+[tool.setuptools_scm]
+root = "../.."
+tag_regex = '^gen/(?P<version>[vV]?\d+(?:\.\d+){0,2}[^\+]*)(?:\+.*)?$'
+git_describe_command = 'git describe --dirty --tags --long --match "gen/v[0-9]*"'
+
+[tool.setuptools]
+zip-safe = false
+
+[tool.setuptools.package-data]
+"*" = ["py.typed", "*.pyi"]
+
+[tool.setuptools.packages.find]
+include = ["loliot", "loliot.*"]
+
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"

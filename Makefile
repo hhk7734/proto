@@ -1,6 +1,7 @@
 .PHONY: gen
 gen: install_protoc_gen_go
 	sh ./scripts/gen_go.sh
+	sh ./scripts/gen_python.sh
 
 .PHONY: install_protoc_gen_go
 install_protoc_gen_go:
