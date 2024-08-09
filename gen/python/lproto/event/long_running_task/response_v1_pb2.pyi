@@ -7,7 +7,7 @@ from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Map
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ResponseV1(_message.Message):
-    __slots__ = ["id", "errors"]
+    __slots__ = ("id", "errors")
     ID_FIELD_NUMBER: _ClassVar[int]
     ERRORS_FIELD_NUMBER: _ClassVar[int]
     id: str

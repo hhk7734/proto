@@ -5,7 +5,7 @@ from typing import ClassVar as _ClassVar, Optional as _Optional
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class ErrorV1(_message.Message):
-    __slots__ = ["code", "message"]
+    __slots__ = ("code", "message")
     CODE_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
     code: int
