@@ -40,12 +40,12 @@ container: ## Run target in a container. Use target=<target> to specify the targ
 	$(CONTAINER_TOOL) run -it --rm -v $(PWD):/workdir -w /workdir $(PROTOC_IMAGE) make $(target)
 
 .PHONY: generate
-generate: generate-go generate-python generate-typescript ## Generate code for All languages from proto files.
+generate: generate-go generate-python generate-typescript generate-cpp ## Generate code for All languages from proto files.
 
 .PHONY: generate-go
 generate-go: ## Generate code for Go from proto files.
 	rm -rf gen/go/lproto
-	find . -name '*.proto' -exec \
+	find lproto -name '*.proto' -exec \
 	protoc \
 		--proto_path=. \
 		--go_out=gen/go \
@@ -55,7 +55,7 @@ generate-go: ## Generate code for Go from proto files.
 .PHONY: generate-python
 generate-python: ## Generate code for Python from proto files.
 	find gen/python -regex '.*_pb2\.pyi?$$' -delete
-	find . -name '*.proto' -exec \
+	find lproto -name '*.proto' -exec \
 	protoc \
 		--proto_path=. \
 		--python_out=gen/python \
@@ -66,12 +66,23 @@ generate-python: ## Generate code for Python from proto files.
 generate-typescript: ## Generate code for TypeScript from proto files.
 	rm -rf gen/typescript/src
 	mkdir -p gen/typescript/src
-	find . -name '*.proto' -exec \
+	find lproto -name '*.proto' -exec \
 	protoc \
 		--proto_path=. \
 		--plugin="$(shell which protoc-gen-ts_proto)" \
 		--ts_proto_out=gen/typescript/src \
 		--ts_proto_opt=esModuleInterop=true \
+		{} \;
+
+.PHONY: generate-cpp
+generate-cpp: ## Generate code for C++ from proto files.
+	rm -rf gen/cpp/lproto
+	find lproto -name '*.proto' -exec \
+	protoc \
+		--proto_path=. \
+		--cpp_out=gen/cpp \
+		--grpc_out=gen/cpp \
+		--plugin=protoc-gen-grpc="$(shell which grpc_cpp_plugin)" \
 		{} \;
 
 .PHONY: remove-local-branch
