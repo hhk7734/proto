@@ -60,6 +60,7 @@ export(EXPORT lprotoTargets
 configure_package_config_file(cmake/lprotoConfig.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/lprotoConfig.cmake"
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/lproto
+    NO_SET_AND_CHECK_MACRO
 )
 
 install(EXPORT lprotoTargets
