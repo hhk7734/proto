@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.lproto/event/long_running_task/status_v1.proto\"8\n\x08StatusV1\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05total\x18\x02 \x01(\x05\x12\x11\n\tprocessed\x18\x03 \x01(\x05\x42@Z>github.com/hhk7734/proto/gen/go/lproto/event/long_running_taskb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n.lproto/event/long_running_task/status_v1.proto\x12\x1elproto.event.long_running_task\"8\n\x08StatusV1\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05total\x18\x02 \x01(\x05\x12\x11\n\tprocessed\x18\x03 \x01(\x05\x42@Z>github.com/hhk7734/proto/gen/go/lproto/event/long_running_taskb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,6 +22,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'lproto.event.long_running_t
 if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['DESCRIPTOR']._options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z>github.com/hhk7734/proto/gen/go/lproto/event/long_running_task'
-  _globals['_STATUSV1']._serialized_start=50
-  _globals['_STATUSV1']._serialized_end=106
+  _globals['_STATUSV1']._serialized_start=82
+  _globals['_STATUSV1']._serialized_end=138
 # @@protoc_insertion_point(module_scope)

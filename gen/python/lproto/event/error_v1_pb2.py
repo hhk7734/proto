@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1blproto/event/error_v1.proto\"(\n\x07\x45rrorV1\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\tB.Z,github.com/hhk7734/proto/gen/go/lproto/eventb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1blproto/event/error_v1.proto\x12\x0clproto.event\"(\n\x07\x45rrorV1\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\tB.Z,github.com/hhk7734/proto/gen/go/lproto/eventb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -22,6 +22,6 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'lproto.event.error_v1_pb2',
 if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['DESCRIPTOR']._options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z,github.com/hhk7734/proto/gen/go/lproto/event'
-  _globals['_ERRORV1']._serialized_start=31
-  _globals['_ERRORV1']._serialized_end=71
+  _globals['_ERRORV1']._serialized_start=45
+  _globals['_ERRORV1']._serialized_end=85
 # @@protoc_insertion_point(module_scope)

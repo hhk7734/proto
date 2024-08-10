@@ -7,7 +7,7 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "";
+export const protobufPackage = "lproto.event";
 
 export interface ErrorV1 {
   code: number;

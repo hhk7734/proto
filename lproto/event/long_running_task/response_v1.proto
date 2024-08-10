@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package lproto.event.long_running_task;
+
 import "lproto/event/error_v1.proto";
 
 option go_package = "github.com/hhk7734/proto/gen/go/lproto/event/long_running_task";

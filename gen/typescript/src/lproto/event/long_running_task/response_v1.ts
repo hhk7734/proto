@@ -8,7 +8,7 @@
 import _m0 from "protobufjs/minimal";
 import { ErrorV1 } from "../error_v1";
 
-export const protobufPackage = "";
+export const protobufPackage = "lproto.event.long_running_task";
 
 export interface ResponseV1 {
   id: string;
