@@ -90,12 +90,11 @@ release: ## Set version and create a new tag. Use version=<version> to specify t
 		exit 1; \
 	fi
 	$(eval sem_version := $(subst v,,$(version)))
-	@echo v$(sem_version)
+	@echo "Bumping version to v$(sem_version)"
 
-	sed -i -e 's/set(lproto_VERSION \(.*\))/set(lproto_VERSION $(sem_version))/g' gen/cpp/CMakeLists.txt
+	sed -i -e 's/set(lproto_VERSION .*)/set(lproto_VERSION $(sem_version))/g' gen/cpp/CMakeLists.txt
+	# git add gen/cpp/CMakeLists.txt
+	# git commit -m "feat: bump version to $(sem_version)"
 
-	git add gen/cpp/CMakeLists.txt
-	git commit -m "bump version to $(sem_version)"
-
-	git tag v$(sem_version)
-	git tag gen/go/v$(sem_version)
+	# git tag v$(sem_version)
+	# git tag gen/go/v$(sem_version)

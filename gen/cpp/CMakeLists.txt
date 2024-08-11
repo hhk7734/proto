@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.28)
 
+# Do not edit version. It is set by `make release` command.
 set(lproto_VERSION 0.3.0)
 
 project(
