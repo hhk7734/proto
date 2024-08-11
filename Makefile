@@ -83,14 +83,19 @@ remove-local-branch: ## Update remote branches and remove local branches.
 
 ##@ Release
 
-.PHONY: tag
-tag: ## Create a new tag. Use version=<version> to specify the version.
+.PHONY: release
+release: ## Set version and create a new tag. Use version=<version> to specify the version.
 	@if [ -z "${version}" ]; then \
 		echo "version is empty"; \
 		exit 1; \
 	fi
-	@echo v$(subst v,,$(version))
-	git tag v$(subst v,,$(version))
-	git tag gen/go/v$(subst v,,$(version))
+	$(eval sem_version := $(subst v,,$(version)))
+	@echo v$(sem_version)
 
-	git push origin --tags
+	sed -i -e 's/set(lproto_VERSION \(.*\))/set(lproto_VERSION $(sem_version))/g' gen/cpp/CMakeLists.txt
+
+	git add gen/cpp/CMakeLists.txt
+	git commit -m "bump version to $(sem_version)"
+
+	git tag v$(sem_version)
+	git tag gen/go/v$(sem_version)
