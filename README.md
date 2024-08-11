@@ -19,7 +19,6 @@ Development
   generate-go      Generate code for Go from proto files.
   generate-python  Generate code for Python from proto files.
   generate-typescript  Generate code for TypeScript from proto files.
-  generate-cpp     Generate code for C++ from proto files.
   remove-local-branch  Update remote branches and remove local branches.
 
 Release
