@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.28)
 
+set(lproto_VERSION 0.2.0)
+
 project(
     lproto
+    VERSION ${lproto_VERSION}
     DESCRIPTION "Generated library for lol-iot Protobuf and gRPC"
     HOMEPAGE_URL "https://github.com/hhk7734/proto"
     LANGUAGES CXX
@@ -88,7 +91,16 @@ configure_package_config_file(
     NO_SET_AND_CHECK_MACRO
 )
 
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    VERSION ${lproto_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
 install(
-    FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME_LOWER}
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    DESTINATION
+        ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME_LOWER}
 )
