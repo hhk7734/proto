@@ -1,13 +1,6 @@
 {
-	"dependencies": ["protobuf", "grpc"],
-	"overrides": [
-		{
-			"name": "protobuf",
-			"version": "4.25.1#1"
-		},
-		{
-			"name": "grpc",
-			"version": "1.60.0#1"
-		}
-	]
+	"name": "lproto",
+	"description": "Generated library for lol-iot Protobuf and gRPC",
+	"homepage": "https://github.com/hhk7734/proto",
+	"dependencies": ["protobuf", "grpc"]
 }

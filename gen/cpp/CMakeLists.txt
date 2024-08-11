@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 
 project(lproto
-    DESCRIPTION "Generated Protobuf and gRPC library"
+    DESCRIPTION "Generated library for lol-iot Protobuf and gRPC"
     HOMEPAGE_URL "https://github.com/hhk7734/proto"
     LANGUAGES CXX
 )
@@ -15,15 +15,37 @@ include(GNUInstallDirs)
 find_package(Protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
-# Create a library from the generated sources
-file(GLOB_RECURSE GENERATED_SRC
-    "lproto/**/*.cc"
+# Generate the Protobuf and gRPC sources
+set(PROTO_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
+set(PROTO_IMPORT_DIRS "${CMAKE_CURRENT_LIST_DIR}/../..")
+file(GLOB_RECURSE PROTO_FILES "${PROTO_IMPORT_DIRS}/lproto/**/*.proto")
+
+protobuf_generate(
+    PROTOS ${PROTO_FILES}
+    IMPORT_DIRS ${PROTO_IMPORT_DIRS}
+    PROTOC_OUT_DIR "${PROTO_BINARY_DIR}"
+    OUT_VAR PROTO_GENERATED_FILES
 )
-add_library(lproto STATIC ${GENERATED_SRC})
+
+protobuf_generate(
+    PROTOS ${PROTO_FILES}
+    LANGUAGE grpc
+    GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc
+    PLUGIN "protoc-gen-grpc=\$<TARGET_FILE:gRPC::grpc_cpp_plugin>"
+    IMPORT_DIRS ${PROTO_IMPORT_DIRS}
+    PROTOC_OUT_DIR "${PROTO_BINARY_DIR}"
+    OUT_VAR GRPC_GENERATED_FILES
+)
+
+# Create a library from the generated sources
+add_library(lproto STATIC
+    ${PROTO_GENERATED_FILES}
+    ${GRPC_GENERATED_FILES}
+)
 
 # Include directories for the library
 target_include_directories(lproto
-    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+    PUBLIC $<BUILD_INTERFACE:${PROTO_BINARY_DIR}>
            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
@@ -45,8 +67,9 @@ install(TARGETS lproto
 )
 
 # Install header files
-install(DIRECTORY lproto/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lproto
-        FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY ${PROTO_BINARY_DIR}/lproto/
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lproto
+    FILES_MATCHING PATTERN "*.h")
 
 # Export the package for use with other CMake projects
 export(EXPORT lprotoTargets
