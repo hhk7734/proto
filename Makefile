@@ -50,16 +50,20 @@ generate-go: ## Generate code for Go from proto files.
 		--proto_path=. \
 		--go_out=gen/go \
 		--go_opt=paths=source_relative \
+		--go-grpc_out=gen/go \
+		--go-grpc_opt=paths=source_relative \
 		{} \;
 
 .PHONY: generate-python
 generate-python: ## Generate code for Python from proto files.
-	find gen/python -regex '.*_pb2\.pyi?$$' -delete
+	find gen/python -regex '.*_pb2.*\.pyi?$$' -delete
 	find lproto -name '*.proto' -exec \
 	protoc \
 		--proto_path=. \
-		--python_out=gen/python \
 		--pyi_out=gen/python \
+		--python_out=gen/python \
+		--grpc_out=gen/python \
+		--plugin=protoc-gen-grpc="$(shell which grpc_python_plugin)" \
 		{} \;
 
 .PHONY: generate-typescript
@@ -93,8 +97,8 @@ release: ## Set version and create a new tag. Use version=<version> to specify t
 	@echo "Bumping version to v$(sem_version)"
 
 	sed -i -e 's/set(lproto_VERSION .*)/set(lproto_VERSION $(sem_version))/g' gen/cpp/CMakeLists.txt
-	# git add gen/cpp/CMakeLists.txt
-	# git commit -m "feat: bump version to $(sem_version)"
+	git add gen/cpp/CMakeLists.txt
+	git commit -m "feat: bump version to $(sem_version)"
 
-	# git tag v$(sem_version)
-	# git tag gen/go/v$(sem_version)
+	git tag v$(sem_version)
+	git tag gen/go/v$(sem_version)

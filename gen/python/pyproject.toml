@@ -6,7 +6,7 @@ requires-python = ">=3.8,<4.0"
 
 dynamic = ["version"]
 
-dependencies = ["protobuf"]
+dependencies = ["protobuf", "grpcio"]
 
 [tool.setuptools_scm]
 root = "../.."
