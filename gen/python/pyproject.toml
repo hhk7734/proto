@@ -10,8 +10,8 @@ dependencies = ["protobuf"]
 
 [tool.setuptools_scm]
 root = "../.."
-tag_regex = '^gen/(?P<version>[vV]?\d+(?:\.\d+){0,2}[^\+]*)(?:\+.*)?$'
-git_describe_command = 'git describe --dirty --tags --long --match "gen/v[0-9]*"'
+tag_regex = '^(?P<version>[vV]?\d+(?:\.\d+){0,2}[^\+]*)(?:\+.*)?$'
+git_describe_command = 'git describe --dirty --tags --long --match "v[0-9]*"'
 
 [tool.setuptools]
 zip-safe = false
